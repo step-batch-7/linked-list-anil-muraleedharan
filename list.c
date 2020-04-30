@@ -34,6 +34,21 @@ Status add_to_end(List_ptr list, int value)
   return Success;
 }
 
+Status add_to_start(List_ptr list, int value)
+{
+  Node *new_node = create_node(value);
+  list->count++;
+  if(list->head == NULL)
+  {
+    list->head = new_node;
+    list->last = new_node;
+    return Success;
+  }
+  new_node->next = list->head;
+  list->head = new_node;
+  return Success;
+}
+
 void display(List_ptr list)
 {
   Node *p_walk = list->head;
@@ -44,7 +59,8 @@ void display(List_ptr list)
   }
 }
 
-Status clear_list(List_ptr list){
+Status clear_list(List_ptr list)
+{
   Node *p_walk = list->head;
   while(p_walk != NULL){
     Node *next = p_walk->next;
