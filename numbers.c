@@ -2,7 +2,8 @@
 #include<stdio.h>
 #include<stdlib.h>
 
-char get_input(void){
+char get_option(void)
+{
   fflush(stdin);
   char option;
   system("clear");
@@ -14,7 +15,7 @@ char get_input(void){
 int main(void)
 {
   List_ptr list = create_list();
-  char option = get_input();
+  char option = get_option();
   while (option != 'm')
   {
     int number;
@@ -29,6 +30,9 @@ int main(void)
 
       case 'b':
       //add a number to the start of the list
+      printf("\nEnter the number to add : ");
+      scanf("%d", &number);
+      add_to_start(list, number);
       break;
 
       case 'c':
@@ -77,7 +81,7 @@ int main(void)
       printf("\nUnexpected input try again");
       break;
     }
-    option = get_input();
+    option = get_option();
   }
   destroy_list(list);
   return 0;
