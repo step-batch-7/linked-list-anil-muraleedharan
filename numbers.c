@@ -92,6 +92,13 @@ int main(void)
 
       case 'h':
       //remove first occurrence of a number
+      printf("\nEnter the number to remove : ");
+      scanf("%d", &number);
+      status = remove_first_occurrence(list, number);
+      if(!status)
+      {
+        printf("\nThis number does not exist in the list.");
+      }
       break;
 
       case 'i':
