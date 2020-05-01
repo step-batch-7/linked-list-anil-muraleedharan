@@ -19,6 +19,7 @@ int main(void)
   while (option != 'm')
   {
     int number;
+    int position;
     switch (option)
     {
       case 'a':
@@ -37,6 +38,11 @@ int main(void)
 
       case 'c':
       //insert a number at a given position in the list
+      printf("\nEnter the number to add : ");
+      scanf("%d", &number);
+      printf("\nEnter the position to add : ");
+      scanf("%d", &position);
+      insert_at(list, number, position);
       break;
 
       case 'd':
