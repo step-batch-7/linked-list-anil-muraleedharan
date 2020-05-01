@@ -81,6 +81,13 @@ int main(void)
 
       case 'g':
       //remove a number from a given position in the list
+      printf("\nEnter the position to add : ");
+      scanf("%d", &position);
+      status = remove_at(list, position);
+      if(!status)
+      {
+        printf("\nNot possible to remove from this position.");
+      }
       break;
 
       case 'h':

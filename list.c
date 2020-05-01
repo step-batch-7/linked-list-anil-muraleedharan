@@ -126,6 +126,31 @@ Status remove_from_end(List_ptr list)
   return Success;
 }
 
+Status remove_at(List_ptr list, int position)
+{
+  if(list->count == 0 || position > list->count - 1)
+  {
+    return Failure;
+  }
+  if(position == 0)
+  {
+    return remove_from_start(list);
+  }
+  int count = 0;
+  Node_ptr p_walk = list->head;
+  while (count < position - 1)
+  {
+    p_walk = p_walk->next;
+    count++;
+  }
+  Node_ptr to_be_freed = p_walk->next;
+  int value = to_be_freed->value;
+  p_walk->next = to_be_freed->next;
+  free(to_be_freed);
+  list->count--;
+  return Success;
+}
+
 void display(List_ptr list)
 {
   Node_ptr p_walk = list->head;
