@@ -20,6 +20,7 @@ int main(void)
   {
     int number;
     int position;
+    Status status;
     switch (option)
     {
       case 'a':
@@ -42,14 +43,22 @@ int main(void)
       scanf("%d", &number);
       printf("\nEnter the position to add : ");
       scanf("%d", &position);
-      insert_at(list, number, position);
+      status = insert_at(list, number, position);
+      if(!status)
+      {
+        printf("\nNot possible to add at this position.");
+      }
       break;
 
       case 'd':
       //add a unique item on the list at the end(if it already exists, do not insert)
       printf("\nEnter the number to add : ");
       scanf("%d", &number);
-      add_unique(list, number);
+      status = add_unique(list, number);
+      if(!status)
+      {
+        printf("\nThis number is already exist in list.");
+      }
       break;
 
       case 'e':
