@@ -47,7 +47,7 @@ Status add_to_start(List_ptr list, int value)
   return Success;
 }
 
-Status insert_at(List *list, int value, int position)
+Status insert_at(List_ptr list, int value, int position)
 {
   if(position > list->count)
   {
@@ -71,6 +71,20 @@ Status insert_at(List *list, int value, int position)
   place_to_add->next = to_be_added;
   list->count++;
   return Success;
+}
+
+Status add_unique(List_ptr list, int value)
+{
+  Node *p_walk = list->head;
+  while (p_walk != NULL)
+  {
+    if(p_walk->value == value)
+    {
+      return Failure;
+    }
+    p_walk = p_walk->next;
+  }
+  return add_to_end(list, value);
 }
 
 void display(List_ptr list)

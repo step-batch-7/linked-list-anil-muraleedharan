@@ -47,6 +47,9 @@ int main(void)
 
       case 'd':
       //add a unique item on the list at the end(if it already exists, do not insert)
+      printf("\nEnter the number to add : ");
+      scanf("%d", &number);
+      add_unique(list, number);
       break;
 
       case 'e':
