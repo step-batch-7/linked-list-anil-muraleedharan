@@ -63,6 +63,11 @@ int main(void)
 
       case 'e':
       //remove a number from the beginning of the list
+      status = remove_from_start(list);
+      if(!status)
+      {
+        printf("\nThere is no elements to remove");
+      }
       break;
 
       case 'f':

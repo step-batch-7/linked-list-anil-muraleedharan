@@ -87,6 +87,19 @@ Status add_unique(List_ptr list, int value)
   return add_to_end(list, value);
 }
 
+Status remove_from_start(List_ptr list)
+{
+  if(list->count == 0)
+  {
+    return Failure;
+  }
+  list->count--;
+  Node *element_to_remove = list->head;
+  list->head = element_to_remove->next;
+  free(element_to_remove);
+  return Success;
+}
+
 void display(List_ptr list)
 {
   Node *p_walk = list->head;
