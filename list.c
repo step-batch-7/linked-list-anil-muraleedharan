@@ -100,6 +100,32 @@ Status remove_from_start(List_ptr list)
   return Success;
 }
 
+Status remove_from_end(List_ptr list)
+{
+  if(list->count == 0)
+  {
+    return Failure;
+  }
+  if(list->count == 1)
+  {
+    return clear_list(list);
+  }
+  list->count--;
+  Node_ptr p_walk = list->head;
+  Node_ptr last;
+  int count = 0;
+  while (count < list->count)
+  {
+    last = p_walk;
+    p_walk = p_walk->next;
+    count++;
+  }
+  last->next = NULL;
+  list->last = last;
+  free(p_walk);
+  return Success;
+}
+
 void display(List_ptr list)
 {
   Node_ptr p_walk = list->head;

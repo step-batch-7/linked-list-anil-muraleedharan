@@ -72,6 +72,11 @@ int main(void)
 
       case 'f':
       //remove a number from the end of the list
+      status = remove_from_end(list);
+      if(!status)
+      {
+        printf("\nThere is no elements to remove");
+      }
       break;
 
       case 'g':
