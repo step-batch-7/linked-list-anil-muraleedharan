@@ -157,7 +157,6 @@ Status remove_first_occurrence(List_ptr list, int value)
   int position = 0;
   while (p_walk != NULL)
   {
-    printf("---%d---%d\n", p_walk->value, value);
     if (p_walk->value == value)
     {
       return remove_at(list, position);
