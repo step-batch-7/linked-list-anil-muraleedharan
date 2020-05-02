@@ -119,6 +119,17 @@ int main(void)
 
       case 'k':
       //check if a number exists in the list
+      printf("\nEnter the number to check : ");
+      scanf("%d", &number);
+      status = is_element_exist(list, number);
+      if(status)
+      {
+        printf("\nThe number exist in the list.");
+      }
+      else
+      {
+        printf("\nThe number does not exist in the list.");
+      }
       break;
 
       case 'l':

@@ -186,6 +186,20 @@ Status remove_all_occurrences(List_ptr list, int value)
   return status;
 }
 
+Status is_element_exist(List *list, int value)
+{
+  Node *p_walk = list->head;
+  while (p_walk != NULL )
+  {
+    if (p_walk->value == value)
+    {
+      return Success;
+    }
+      p_walk = p_walk->next;
+  }
+  return Failure;
+}
+
 void display(List_ptr list)
 {
   Node_ptr p_walk = list->head;
