@@ -22,15 +22,14 @@ List_ptr create_list(void)
 Status add_to_end(List_ptr list, int value)
 {
   Node_ptr new_node = create_node(value);
-  list->count++;
-  if(list->head == NULL)
+  Node_ptr *ptr_to_set = &list->head;
+  if (list->head != NULL)
   {
-    list->head = new_node;
-    list->last = new_node;
-    return Success;
+      ptr_to_set = &list->last->next;
   }
-  list->last->next = new_node;
+  (*ptr_to_set) = new_node;
   list->last = new_node;
+  list->count++;
   return Success;
 }
 
