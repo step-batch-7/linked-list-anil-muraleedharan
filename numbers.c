@@ -103,6 +103,13 @@ int main(void)
 
       case 'i':
       //remove all occurrences of a number
+      printf("\nEnter the number to remove : ");
+      scanf("%d", &number);
+      status = remove_all_occurrences(list, number);
+      if(!status)
+      {
+        printf("\nThis number does not exist in the list.");
+      }
       break;
 
       case 'j':
