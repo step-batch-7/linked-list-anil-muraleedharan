@@ -6,10 +6,15 @@ char get_option(void)
 {
   fflush(stdin);
   char option;
-  system("clear");
-  printf("%s", Message);
+  printf("%s", Main_Menu);
   option = getchar();
   return option;
+}
+
+void clear_screen_and_print_message(Char_ptr message)
+{
+  system("clear");
+  printf("%s", message);
 }
 
 int main(void)
@@ -20,6 +25,7 @@ int main(void)
   {
     int number;
     int position;
+    Char_ptr message;
     Status status;
     switch (option)
     {
@@ -27,14 +33,18 @@ int main(void)
       //add a number to the end of the list
       printf("\nEnter the number to add : ");
       scanf("%d", &number);
-      add_to_end(list, number);
+      status =  add_to_end(list, number);
+      message = status ? "\nDone.\n" : "\nNumber could not be added.\n";
+      clear_screen_and_print_message(message);
       break;
 
       case 'b':
       //add a number to the start of the list
       printf("\nEnter the number to add : ");
       scanf("%d", &number);
-      add_to_start(list, number);
+      status =  add_to_start(list, number);
+      message = status ? "\nDone.\n" : "\nNumber could not be added.\n";
+      clear_screen_and_print_message(message);
       break;
 
       case 'c':
@@ -44,10 +54,8 @@ int main(void)
       printf("\nEnter the position to add : ");
       scanf("%d", &position);
       status = insert_at(list, number, position);
-      if(!status)
-      {
-        printf("\nNot possible to add at this position.");
-      }
+      message = status ? "\nDone.\n" : "\nNot possible to add at this position.\n";
+      clear_screen_and_print_message(message);
       break;
 
       case 'd':
@@ -55,28 +63,22 @@ int main(void)
       printf("\nEnter the number to add : ");
       scanf("%d", &number);
       status = add_unique(list, number);
-      if(!status)
-      {
-        printf("\nThis number is already exist in list.");
-      }
+      message = status ? "\nDone.\n" : "\nNot possible to add this number.\n";
+      clear_screen_and_print_message(message);
       break;
 
       case 'e':
       //remove a number from the beginning of the list
       status = remove_from_start(list);
-      if(!status)
-      {
-        printf("\nThere is no elements to remove");
-      }
+      message = status ? "\nDone.\n" : "\nThere is no element to remove.\n";
+      clear_screen_and_print_message(message);
       break;
 
       case 'f':
       //remove a number from the end of the list
       status = remove_from_end(list);
-      if(!status)
-      {
-        printf("\nThere is no elements to remove");
-      }
+      message = status ? "\nDone.\n" : "\nThere is no element to remove.\n";
+      clear_screen_and_print_message(message);
       break;
 
       case 'g':
@@ -84,10 +86,8 @@ int main(void)
       printf("\nEnter the position to remove : ");
       scanf("%d", &position);
       status = remove_at(list, position);
-      if(!status)
-      {
-        printf("\nNot possible to remove from this position.");
-      }
+      message = status ? "\nDone.\n" : "\nNot possible to remove from this position.\n";
+      clear_screen_and_print_message(message);
       break;
 
       case 'h':
@@ -95,10 +95,8 @@ int main(void)
       printf("\nEnter the number to remove : ");
       scanf("%d", &number);
       status = remove_first_occurrence(list, number);
-      if(!status)
-      {
-        printf("\nThis number does not exist in the list.");
-      }
+      message = status ? "\nDone.\n" : "\nThis number does not exist in the list.\n";
+      clear_screen_and_print_message(message);
       break;
 
       case 'i':
@@ -106,10 +104,8 @@ int main(void)
       printf("\nEnter the number to remove : ");
       scanf("%d", &number);
       status = remove_all_occurrences(list, number);
-      if(!status)
-      {
-        printf("\nThis number does not exist in the list.");
-      }
+      message = status ? "\nDone.\n" : "\nThis number does not exist in the list.\n";
+      clear_screen_and_print_message(message);
       break;
 
       case 'j':
@@ -122,23 +118,20 @@ int main(void)
       printf("\nEnter the number to check : ");
       scanf("%d", &number);
       status = is_element_exist(list, number);
-      if(status)
-      {
-        printf("\nThe number exist in the list.");
-      }
-      else
-      {
-        printf("\nThe number does not exist in the list.");
-      }
+      message = status ? "\nThe number exist in the list.\n" : "\nThe number does not exist in the list.\n";
+      clear_screen_and_print_message(message);
       break;
 
       case 'l':
       //display the list of numbers
+      system("clear");
+      printf("\nElements : ");
       display(list);
       break;
 
       default:
-      printf("\nUnexpected input try again");
+      message = "\nUnexpected input try again\n";
+      clear_screen_and_print_message(message);
       break;
     }
     option = get_option();
