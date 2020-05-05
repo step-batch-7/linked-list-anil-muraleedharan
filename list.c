@@ -65,6 +65,10 @@ Status insert_at(List_ptr list, int value, int position)
   {
     return add_to_start(list, value);
   }
+  if(position == list->count)
+  {
+    return add_to_end(list, value);
+  }
   int count = 0;
   Node_pair_ptr node_pair = malloc(sizeof(Node_pair));
   node_pair->current = list->head;
