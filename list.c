@@ -66,16 +66,17 @@ Status insert_at(List_ptr list, int value, int position)
     return add_to_start(list, value);
   }
   int count = 0;
-  Node_ptr p_walk = list->head;
-  Node_ptr place_to_add = list->head;
+  Node_pair_ptr node_pair = malloc(sizeof(Node_pair));
+  node_pair->current = list->head;
+  node_pair->prev = list->head;
   while (count < position)
   {
-    place_to_add = p_walk;
-    p_walk = p_walk->next;
+    node_pair->prev = node_pair->current;
+    node_pair->current = node_pair->current->next;
     count++;
   }
-  new_node->next = place_to_add->next;
-  place_to_add->next = new_node;
+  new_node->next = node_pair->prev->next;
+  node_pair->prev->next = new_node;
   list->count++;
   return Success;
 }
@@ -115,21 +116,22 @@ Status remove_from_end(List_ptr list)
   }
   if(list->count == 1)
   {
-    return clear_list(list);
+    return remove_from_start(list);
   }
   list->count--;
-  Node_ptr p_walk = list->head;
-  Node_ptr last;
+  Node_pair_ptr node_pair = malloc(sizeof(Node_pair_ptr));
+  node_pair->current= list->head;
   int count = 0;
   while (count < list->count)
   {
-    last = p_walk;
-    p_walk = p_walk->next;
+    node_pair->prev = node_pair->current;
+    node_pair->current = node_pair->current->next;
     count++;
   }
-  last->next = NULL;
-  list->last = last;
-  free(p_walk);
+  node_pair->prev->next = NULL;
+  list->last = node_pair->prev;
+  free(node_pair->current);
+  free(node_pair);
   return Success;
 }
 
