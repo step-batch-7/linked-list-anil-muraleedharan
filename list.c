@@ -145,6 +145,10 @@ Status remove_at(List_ptr list, int position)
   {
     return Failure;
   }
+  if(position == list->count - 1)
+  {
+    return remove_from_end(list);
+  }
   if(position == 0)
   {
     return remove_from_start(list);
