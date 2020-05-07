@@ -120,10 +120,10 @@ Status remove_from_end(List_ptr list)
   }
   if(list->count == 1)
   {
-    return remove_from_start(list);
+    return clear_list(list);
   }
   list->count--;
-  Node_pair_ptr node_pair = malloc(sizeof(Node_pair_ptr));
+  Node_pair_ptr node_pair = malloc(sizeof(Node_pair));
   node_pair->current= list->head;
   int count = 0;
   while (count < list->count)
